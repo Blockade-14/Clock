@@ -35,7 +35,7 @@ var arrows = document.querySelectorAll(".arrow");
     arrows[1].classList.add("minute");
     arrows[2].classList.add("arrow-hour");
 
-setInterval(function(){
+function setClock(){
 
     var d = new Date();
     // var milliseconds = d.getMilliseconds();
@@ -47,19 +47,16 @@ setInterval(function(){
     // var millisecondsRot = 360 / 60000 * milliseconds;
 
     // arrows[0].style.transform = "rotate(" + (secondsRot + millisecondsRot ) + "deg)"
-    arrows[0].style.transform = "rotate(" + (360 / 60 * second) + "deg)"
-    arrows[1].style.transform = "rotate(" + (360 / 60 * minute) + "deg)"
-    arrows[2].style.transform = "rotate(" + (360 / 12 * hour) + "deg)"
+    arrows[0].style.transform = "rotate(" + (360 / 60 * second) + "deg)";
+    arrows[1].style.transform = "rotate(" + (360 / 60 * minute) + "deg)";
+    arrows[2].style.transform = "rotate(" + ((360 / 12 * hour) + (360 / 12 * minute / 60)) + "deg)";
+};
+
+setClock();
+
+setInterval(function(){
+
+    setClock();
 
 // }, 60)
-}, 1000)
-
-    var d = new Date();
-    var second = d.getSeconds();
-    var minute = d.getMinutes();
-    var hour = d.getHours();
-
-    arrows[0].style.transform = "rotate(" + (360 / 60 * second) + "deg)"
-    arrows[1].style.transform = "rotate(" + (360 / 60 * minute) + "deg)"
-    arrows[2].style.transform = "rotate(" + (360 / 12 * hour) + "deg)"
-
+}, 1000);
